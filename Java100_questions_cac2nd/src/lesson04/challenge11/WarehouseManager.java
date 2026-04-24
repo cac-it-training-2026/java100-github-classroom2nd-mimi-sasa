@@ -70,6 +70,7 @@ public class WarehouseManager {
 		int[] MQArrayC = new int[5];
 		int[] MQArrayD = new int[5];
 		int[] MQArrayE = new int[5];
+		boolean StopFlg = false;
 
 		//ここに配列に値を代入する処理を記述する。(要素はランダム)
 
@@ -95,8 +96,6 @@ public class WarehouseManager {
 		System.out.println("Yさん：");
 		System.out.println("はい、まずは現状から確認いたします。\n");
 
-		System.out.print("C...");
-
 		//ここに配列Cの要素をすべて出力する処理を記述する。
 		System.out.print("C...");
 		for (int i = 0; i < MQArrayC.length; i++) {
@@ -105,7 +104,6 @@ public class WarehouseManager {
 				System.out.print(",");
 			}
 		}
-		System.out.print("\n\nD...");
 
 		//ここに配列Dの要素をすべて出力する処理を記述する。
 		System.out.print("\n\nD...");
@@ -128,29 +126,40 @@ public class WarehouseManager {
 
 		//ここに詰め替え処理を記述する
 
+		//0以外の数を一度ほかの配列に入れて、元の配列を全部０にする。前から順番に戻すと０が後ろに詰まる。
+
 		int Array[] = new int[15];
 
-		//一つの配列に入れる
-		for (int i = 0; i < 5; i++) {
-			Array[i] = MQArrayC[i];
-			Array[i + 5] = MQArrayD[i];
-			Array[i + 10] = MQArrayE[i];
+		for (int i = 0; i < Array.length; i++) {
+			Array[i] = -1; //全部をマイナス１で埋めている（-1のところは空き）
 		}
-		//大きい順に並び変える。
-		for (int i = 0; i < Array.length - 1; i++) {
-			for (int j = i + 1; j < Array.length; j++) {
-				if (Array[i] < Array[j]) {
-					int temp = Array[i];
-					Array[i] = Array[j];
-					Array[j] = temp;
+
+		int k = 0;//０以外の数をArrayのどこに入れるか数えるための変数
+		for (int i = 0; i < MQArrayAll.length; i++) {
+			for (int j = 0; j < MQArrayAll[0].length; j++) {//０ではない値を探して、取り出してArrayに入れる
+				if (MQArrayAll[i][j] == 0) {
+					continue; //０だったら何もせずに次の繰り返しへ
+				} else {
+					Array[k] = MQArrayAll[i][j]; //取り出して
+					MQArrayAll[i][j] = 0; //０を入れる（全部０になる）
+					k++; //次の空きへ
 				}
 			}
 		}
-		//戻す（３つに分ける）
-		for (int i = 0; i < 5; i++) {
-			MQArrayC[i] = Array[i];
-			MQArrayD[i] = Array[i + 5];
-			MQArrayE[i] = Array[i + 10];
+		k = 0;
+
+		for (int i = 0; i < MQArrayAll.length; i++) {
+			for (int j = 0; j < MQArrayAll[0].length; j++) {//元の配列に
+				MQArrayAll[i][j] = Array[k];
+				k++;
+				if (Array[k] == -1) {//-1＝空　が出てきたら戻すのをやめる
+					StopFlg = true;
+					break;
+				}
+			}
+			if (StopFlg) {//戻し終わったのでやめる
+				break;
+			}
 		}
 
 		System.out.println("Yさん：");
