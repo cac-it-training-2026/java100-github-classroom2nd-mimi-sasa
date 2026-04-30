@@ -99,9 +99,18 @@ public class WarehouseManager {
 
 		System.out.println("\n\nでした。直してきます...\n");
 
-
+		int zeroindex = 0;
+		int total = 0;
 		//ここに適切な値の挿入処理を記述する
+		for (int i = 0; i < wonderfulArray.length; i++) {
+			if (wonderfulArray[i] == 0) {
+				zeroindex = i; //０が入っている場所を記録
+			} else {
+				total += wonderfulArray[i]; //すでに入っている数の総和
+			}
+		}
 
+		wonderfulArray[zeroindex] = 15 - total; //１～５の総和は１５。入ってない数がわかる
 
 		System.out.println("Yさん：");
 		System.out.println("直してきました。\n");

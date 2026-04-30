@@ -39,35 +39,70 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 //ここにGammalianクラスを記述する
+class Gammalian {
 
+	private String item;
+	private boolean isGood;
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		boolean hitflag = false;
+		for (int i = 0; i < 10; i++) {
+			//item という文字列の中に、数値 i を文字列にしたものが 含まれていたら true
+			//(Integer.toString(i))は数値のiを文字列にしている
+			//1indexOfはその文字列が道かったインデックスを返すが、見つからなかったら-1を返す
+			if (item.indexOf(Integer.toString(i)) != -1) {
+				hitflag = true;
+				break;
+			}
+		}
+
+		if (hitflag) {
+			isGood = true;
+		} else {
+			isGood = false;
+		}
+		this.item = item;
+	}
+
+	public boolean isGood() {
+		return isGood;
+	}
+
+	public void setGood(boolean isGood) {
+		this.isGood = isGood;
+	}
+}
 
 public class Astronaut {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        System.out.print("γ星人にアイテムを渡してください＞");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String present = br.readLine();
+		System.out.print("γ星人にアイテムを渡してください＞");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String present = br.readLine();
 
+		//ここに適切な処理を記述する
+		//入力をセットする
+		Gammalian gammalian = new Gammalian();
+		gammalian.setItem(present);
 
-        //ここに適切な処理を記述する
+		boolean isGood = false;
 
+		//ここに適切な処理を記述する
+		isGood = gammalian.isGood();
 
-        boolean isGood = false;
-
-
-        //ここに適切な処理を記述する
-
-
-        System.out.println("\nγ星人：");
-        if(isGood){
-             System.out.println("こんな良いものをもらっていいガンマか！");
-             System.out.println("ゆっくりしていくガンマ。");
-        } else{
-             System.out.println("...ありがとガンマ。");
-             System.out.println("ぶぶ漬けでもいかがガンマか？");
-        }
-    }
+		System.out.println("\nγ星人：");
+		if (isGood) {
+			System.out.println("こんな良いものをもらっていいガンマか！");
+			System.out.println("ゆっくりしていくガンマ。");
+		} else {
+			System.out.println("...ありがとガンマ。");
+			System.out.println("ぶぶ漬けでもいかがガンマか？");
+		}
+	}
 }

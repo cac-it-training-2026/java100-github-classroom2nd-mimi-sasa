@@ -83,9 +83,19 @@ public class WarehouseManager {
 
 		System.out.println("\n\nでした。直してきます...\n");
 
-
 		//for文のネストを利用してMQArrayAの要素0の位置にMQArrayBの値を入れる処理を記述する。
-
+		for (int i = 0; i < MQArrayA.length; i++) {//１から順番に偶数を探す
+			if (MQArrayA[i] == 0) { //偶数を見つけたら
+				for (int j = 0; j < MQArrayB.length; j++) {
+					if (MQArrayB[j] != 0) { //追加の配列から奇数を探す
+						int stock = MQArrayA[i]; //1回避難させる（１の配列）
+						MQArrayA[i] = MQArrayB[j]; //２の配列のやつを移す
+						MQArrayB[j] = stock;
+						break; //一回移したら終わりにしないと１と４が入れ替わってしまう
+					}
+				}
+			}
+		}
 
 		System.out.println("Yさん：");
 		System.out.println("直してきました。\n");
