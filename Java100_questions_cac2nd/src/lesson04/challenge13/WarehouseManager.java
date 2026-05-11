@@ -63,32 +63,40 @@ public class WarehouseManager {
 
 	public static void main(String[] args) throws IOException {
 
-
 		//配列の宣言および初期化処理を記述する
-
+		String[] roboArray = { "へい！らっしゃい！！", "何にしますか！今日は活きのいいコハダが入ってますよ",
+				"まいどあり！！またどうぞ" };
 
 		System.out.println("Yさん：");
 		System.out.println("まず、MISAKI○の今の状態を確かめようかな。\n");
 
-
 		//三つのあいさつパターンの出力処理を記述する
-
+		for (int i = 0; i < roboArray.length; i++) {
+			System.out.println("あいさつパターン" + (i + 1) + "...「" + roboArray[i] + "」\n"); //１～３番で選んでもらうために表示を＋１している
+		}
 
 		System.out.println("Yさん：");
 		System.out.println("うわぁ～。どれか変更しよう。\n");
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
 		//入力処理および入力値の代入処理
+		System.out.print("どのパターンを変更しますか？ >");
+		String str = br.readLine();
+		//numは選択された番号を記録する
+		int num = Integer.parseInt(str) - 1; //数字に変換。表示は分かりやすいよう＋１されているため、引く（１～３にするために）
 
+		System.out.print("挨拶を吹き込んでください >");
+		String aisatu = br.readLine();
+		roboArray[num] = aisatu; //選択された番号に新しい挨拶を書き換え
 
 		System.out.println("\nYさん：");
 		System.out.println("よし。もう一度確かめてみよう。\n");
 
-
 		//三つのあいさつパターンの出力処理を記述する
-
+		for (int i = 0; i < roboArray.length; i++) {
+			System.out.println("あいさつパターン" + (i + 1) + "...「" + roboArray[i] + "」\n");
+		}
 
 		System.out.println("Yさん：");
 		System.out.println("まあ少しはマシになったかな。");

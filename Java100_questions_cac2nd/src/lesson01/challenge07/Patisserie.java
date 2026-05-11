@@ -41,6 +41,67 @@
 
 package lesson01.challenge07;
 
-public class Patisserie {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+public class Patisserie {
+	public static void main(String[] args) throws IOException {
+
+		System.out.println("たいへんお待たせしました.");
+		System.out.println("【ポエール・ネルメ】");
+		System.out.println("ただいまより開店です！！");
+
+		int a = 30;
+		int b = 30;
+		int c = 30;
+
+		System.out.println("本日のおすすめ商品です。");
+		System.out.println();
+		System.out.println("シトロン　　  \\250 ・・・ 残り" + a + "個");
+		System.out.println("ショコラ      \\280 ・・・ 残り" + b + "個");
+		System.out.println("ピスターシュ  \\320 ・・・ 残り" + c + "個");
+
+		System.out.println("それぞれ何個ずつ買いますか？（最大30個まで）");
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		//double型を使う
+		System.out.println("シトロン   >");
+		String str = reader.readLine();
+		double num = Double.parseDouble(str);
+
+		System.out.println("ショコラ  >");
+		String str2 = reader.readLine();
+		double num2 = Double.parseDouble(str2);
+
+		System.out.println("ピスターシュ   >");
+		String str3 = reader.readLine();
+		double num3 = Double.parseDouble(str3);
+
+		System.out.println("シトロン　      " + num + "個");
+		System.out.println("ショコラ　    　" + num2 + "個");
+		System.out.println("ピスターシュ　　" + num3 + "個");
+
+		double goukei = num + num2 + num3;
+		//金額は切り捨て　なので整数型に変換
+		int kingaku = (int) num * 250 + (int) num2 * 280 + (int) num3 * 320;
+
+		System.out.println("\n合計個数　　" + goukei + "個");
+		System.out.println("合計金額　　" + kingaku + "円");
+		System.out.println("\nをお買い上げですね。");
+		System.out.println("承りました。");
+
+		System.out.println("\n本日のおすすめ商品です。");
+
+		//在庫は切り捨て
+		int d = (int) (a - num);
+		int e = (int) (b - num2);
+		int f = (int) (c - num3);
+
+		System.out.println("シトロン　　  \\250 ・・・ 残り" + d + "個");
+		System.out.println("ショコラ      \\280 ・・・ 残り" + e + "個");
+		System.out.println("ピスターシュ  \\320 ・・・ 残り" + f + "個");
+
+	}
 }

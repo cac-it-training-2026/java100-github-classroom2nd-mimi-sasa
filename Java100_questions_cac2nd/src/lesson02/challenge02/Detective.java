@@ -26,7 +26,8 @@ public class Detective {
 
 		boolean appointment = false;
 
-		if (appointment) {
+		//論理否定
+		if (!appointment) {
 			System.out.println("助手：");
 			System.out.println("いつも空いています。");
 		}
