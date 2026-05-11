@@ -97,7 +97,7 @@ public class Astronaut {
 		isGood = gammalian.isGood();
 
 		System.out.println("\nγ星人：");
-		if (isGood) {
+		if (isGood) { //isGoodがtrueになっていたら＝数字が見つかっていたら
 			System.out.println("こんな良いものをもらっていいガンマか！");
 			System.out.println("ゆっくりしていくガンマ。");
 		} else {
